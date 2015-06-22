@@ -229,7 +229,5 @@
         tokenSeparators: [",", " "]}
       );
   	}
-
-
   });
 }(window.jQuery);
