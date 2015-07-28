@@ -2,17 +2,18 @@
 
 if ( isset($_POST['nombre']) ){
 
-	$categoria 	= mysql_real_escape_string($_POST['categoria']);
-	$nombre 	= mysql_real_escape_string($_POST['nombre']);
-	$direccion  = mysql_real_escape_string($_POST['direccion']);
-	$telefono  	= mysql_real_escape_string($_POST['telefono']);
-	$contacto  	= mysql_real_escape_string($_POST['contacto']);
-	$correo  	= mysql_real_escape_string($_POST['correo']);
-	$rfc  		= mysql_real_escape_string($_POST['rfc']);
+	$categoria 			= mysql_real_escape_string($_POST['categoria']);
+	$nombre 			= mysql_real_escape_string($_POST['nombre']);
+	$direccion  		= mysql_real_escape_string($_POST['direccion']);
+	$telefono  			= mysql_real_escape_string($_POST['telefono']);
+	$contacto  			= mysql_real_escape_string($_POST['contacto']);
+	$correo  			= mysql_real_escape_string($_POST['correo']);
+	$rfc  				= mysql_real_escape_string($_POST['rfc']);
+	$descripcion  		= mysql_real_escape_string($_POST['descripcion']);
 
-	if ( mysql_query("INSERT INTO clientes SET fecha='".date("Y-m-d")."',categoria='".$categoria."',nombre='".$nombre."',direccion='".$direccion."',telefono='".$telefono."',contacto='".$contacto."',email='".$correo."',rfc='".$rfc."'") ){
+	if ( mysql_query("INSERT INTO proveedores SET fecha='".date("Y-m-d")."',categoria='".$categoria."',nombre='".$nombre."',direccion='".$direccion."',telefono='".$telefono."',contacto='".$contacto."',email='".$correo."',rfc='".$rfc."',descripcion='".$descripcion."'") ){
 		$errorMsg = '<div class="alert alert-success">
-				<i class="fa fa-check"></i> Cliente agregado correctamente.
+				<i class="fa fa-check"></i> Proveedor agregado correctamente.
 			</div>';
 	} else {
 		$errorMsg = '<div class="alert alert-danger">
@@ -28,7 +29,7 @@ if ( isset($_POST['nombre']) ){
 				<div class="pull-right">
 					<a href="" class="return"><i class="fa fa-mail-reply"></i> Regresar</a>
 				</div>
-				<i class="fa fa-users icon"></i> Agregar Cliente
+				<i class="fa fa-tags icon"></i> Agregar Cliente
 			</header>
 			<div class="panel-body">
 				<form class="bs-example form-horizontal" action="" method="post">
@@ -64,11 +65,15 @@ if ( isset($_POST['nombre']) ){
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="col-lg-3 control-label">RFC</label>
-								<div class="col-lg-9"><input type="text" name="RFC" class="form-control" placeholder=""></div>
+								<label class="col-lg-3 control-label">Descripción</label>
+								<div class="col-lg-9"><textarea class="form-control" name="descripcion[]" style="height:85px;" placeholder=""></textarea></div>
 							</div>
 						</div>
 						<div class="col-md-6">
+							<div class="form-group">
+								<label class="col-lg-3 control-label">RFC</label>
+								<div class="col-lg-9"><input type="text" name="RFC" class="form-control" placeholder=""></div>
+							</div>
 							<div class="form-group">
 								<label class="col-lg-3 control-label">Codigo Postal</label>
 								<div class="col-lg-9"><input type="text" maxlength="5" name="codigopostal" class="form-control" placeholder="00000"></div>
@@ -79,7 +84,7 @@ if ( isset($_POST['nombre']) ){
 					<div class="form-group text-right">
 						<div class="col-lg-12"> 
 							<button type="submit" class="btn btn-sm btn-success"><i class="fa fa-check icon"></i> Agregar</button>
-							<a href="admin.php?m=clientes" class="btn btn-sm btn-danger"><i class="fa fa-times icon"></i> Cancelar</a>
+							<a href="admin.php?m=proveedores" class="btn btn-sm btn-danger"><i class="fa fa-times icon"></i> Cancelar</a>
 						</div>
 					</div>
 				</form>

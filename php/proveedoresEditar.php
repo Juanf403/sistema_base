@@ -3,16 +3,16 @@ $id = mysql_real_escape_string($_GET['id']);
 
 if ( isset($_POST['nombre']) ){
 
-	$categoria 	= mysql_real_escape_string($_POST['nombre']);
-	$correo 	= mysql_real_escape_string($_POST['correo']);
-	$direccion  = mysql_real_escape_string($_POST['direccion']);
-	$telefono  	= mysql_real_escape_string($_POST['telefono']);
-	$rfc  	= mysql_real_escape_string($_POST['rfc']);
-	$cp  	= mysql_real_escape_string($_POST['cp']);
-
-	if ( mysql_query("UPDATE clientes SET nombre='".$nombre."',correo='".$correo."',direccion='".$direccion."',telefono='".$telefono."',rfc='".$rfc."',cp='".$cp."' WHERE id='".$id."'") ){
+		$categoria 		= mysql_real_escape_string($_POST['nombre']);
+		$correo 		= mysql_real_escape_string($_POST['correo']);
+		$direccion  	= mysql_real_escape_string($_POST['direccion']);
+		$telefono  		= mysql_real_escape_string($_POST['telefono']);
+		$rfc  			= mysql_real_escape_string($_POST['rfc']);
+		$cp  			= mysql_real_escape_string($_POST['cp']);
+	$descripcion  		= mysql_real_escape_string($_POST['descripcion']);
+	if ( mysql_query("UPDATE proveedores SET nombre='".$nombre."',correo='".$correo."',direccion='".$direccion."',telefono='".$telefono."',rfc='".$rfc."',cp='".$cp.",descripcion='".$descripcion."' WHERE id='".$id."'") ){
 		$errorMsg = '<div class="alert alert-success">
-				<i class="fa fa-check"></i> Cliente editado correctamente.
+				<i class="fa fa-check"></i> Proveedor editado correctamente.
 			</div>';
 	} else {
 		$errorMsg = '<div class="alert alert-danger">
@@ -22,7 +22,7 @@ if ( isset($_POST['nombre']) ){
 
 }
 
-$data = mysql_fetch_object(mysql_query("SELECT * FROM clientes WHERE id='".$id."' LIMIT 1"));
+$data = mysql_fetch_object(mysql_query("SELECT * FROM proveedores WHERE id='".$id."' LIMIT 1"));
 
 ?>
 		<section class="panel panel-default">
@@ -30,7 +30,7 @@ $data = mysql_fetch_object(mysql_query("SELECT * FROM clientes WHERE id='".$id."
 				<div class="pull-right">
 					<a href="" class="return"><i class="fa fa-mail-reply"></i> Regresar</a>
 				</div>
-				<i class="fa fa-users icon"></i> Editar Cliente
+				<i class="fa fa-tags icon"></i> Editar Proveedor
 			</header>
 			<div class="panel-body">
 				<form class="bs-example form-horizontal" action="" method="post">
@@ -66,11 +66,15 @@ $data = mysql_fetch_object(mysql_query("SELECT * FROM clientes WHERE id='".$id."
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label class="col-lg-3 control-label">RFC</label>
-								<div class="col-lg-9"><input type="text" name="rfc" value="<?php echo $data->rfc; ?>" class="form-control" placeholder=""></div>
+								<label class="col-lg-3 control-label">Descripción</label>
+								<div class="col-lg-9"><textarea class="form-control" name="descripcion[]" value="<?php echo $data->descripcion; ?>" style="height:85px;" placeholder=""></textarea></div>
 							</div>
 						</div>
 						<div class="col-md-6">
+							<div class="form-group">
+								<label class="col-lg-2 control-label">RFC</label>
+								<div class="col-lg-10"><input type="text" name="rfc" value="<?php echo $data->rfc; ?>" class="form-control" placeholder=""></div>
+							</div>
 							<div class="form-group">
 								<label class="col-lg-2 control-label">CP</label>
 								<div class="col-lg-10"><input type="text" name="cp" value="<?php echo $data->cp; ?>" class="form-control" placeholder="00000"></div>
@@ -81,7 +85,7 @@ $data = mysql_fetch_object(mysql_query("SELECT * FROM clientes WHERE id='".$id."
 					<div class="form-group text-right">
 						<div class="col-lg-12"> 
 							<button type="submit" class="btn btn-sm btn-success"><i class="fa fa-check icon"></i> Agregar</button>
-							<a href="admin.php?m=clientes" class="btn btn-sm btn-danger"><i class="fa fa-times icon"></i> Cancelar</a>
+							<a href="admin.php?m=proveedores" class="btn btn-sm btn-danger"><i class="fa fa-times icon"></i> Cancelar</a>
 						</div>
 					</div>
 				</form>
